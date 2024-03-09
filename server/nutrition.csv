@@ -1,1 +1,21 @@
-Crop, Protein SS, Carbohydrate SS, ...
+ItemName,Protein,Fat,Carbs,Units
+AlmondsKernel,0.2115,0.125,0.4993,g
+Pistachios,0.2016,0.106,0.4597,g
+Plums,0.007,0.014,0.003,g
+Walnuts,0.1523,0.067,0.6521,g
+Peaches,0.0091,0.015,0.0025,g
+Cantaloupes,0.0084,0.009,0.0019,g
+SweetPotatoes,0.0157,0.03,0.0015,g
+TomatoesMarket,0.0088,0.012,0.002,g
+TomatoesProcessing,0.009,0.009,0.002,g
+ChickenEggs,0.1256,0,0.0951,g
+CowMilk,0.0315,0,0.0325,g
+GoatMilk,0.0356,0,0.0325,g
+Cattle,22.5,12.5,0,lb
+Chickens,27.5,7.5,0,lb
+Sheep/Lamb,22.5,12.5,0,lb
+Turkeys,27.5,7.5,0,lb
+Barley,0.1248,0.173,0.0105,g
+Corn,0.0942,0.073,0.0474,g
+Straw,0.0503,0.137,0.015,g
+Wheat,0.1315,0.122,0.0154,g
