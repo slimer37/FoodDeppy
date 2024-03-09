@@ -2,6 +2,7 @@ import { Card, CardHeader, CardBody } from '@nextui-org/card'
 import FriesCanvas from './components/fries'
 import { ThreeDCardDemo } from './components/3dCard'
 import { TypewriterEffectDemo } from './components/typeWriter'
+import California from './components/California'
 export default function Home() {
   return (
     <div>
@@ -27,6 +28,8 @@ export default function Home() {
             </CardBody>
           </Card>
           <ThreeDCardDemo />
+
+          <California/>
         </div>
       </section>
     </div>
