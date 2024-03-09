@@ -28,8 +28,8 @@ export default function FulfillmentGraph({ mssLabels, mssData } : any) {
 
     return (
         <BarChart
-            width={500}
-            height={500}
+            width={400}
+            height={380}
             data={data}
             margin={{
                 top: 5,

@@ -14,7 +14,7 @@ export function TypewriterEffectDemo() {
     },
     {
       text: 'app',
-      className: 'text-blue-500 dark:text-red-500'
+      className: 'text-[#1c1c84] dark:text-[#ffbf00]'
     },
   ]
   return (
