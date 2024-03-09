@@ -1,8 +1,8 @@
 import { Button } from '@nextui-org/button'
 import { Card, CardFooter, CardHeader, CardBody } from '@nextui-org/card'
-import ProductSize from './components/ProductSize'
-
+import californiaCounties from '/public/california-counties.svg'
 import FriesCanvas from './components/fries'
+import Image from 'next/image'
 
 export default function Home() {
   return (
