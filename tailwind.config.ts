@@ -1,7 +1,13 @@
 import type { Config } from 'tailwindcss'
 import { nextui } from '@nextui-org/react'
+import { AdditiveAnimationBlendMode } from 'three'
 
-const config: Config = {
+const {
+  default: flattenColorPalette
+} = require('tailwindcss/lib/util/flattenColorPalette')
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -66,7 +72,18 @@ const config: Config = {
           }
         }
       }
-    })
+    }),
+    addVariablesForColors
   ]
 }
-export default config
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme('colors'))
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  )
+
+  addBase({
+    ':root': newVars
+  })
+}
