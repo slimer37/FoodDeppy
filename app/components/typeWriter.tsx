@@ -4,16 +4,16 @@ import { TypewriterEffect } from './ui/typewriter-effect'
 export function TypewriterEffectDemo() {
   const words = [
     {
-      text: 'Description'
+      text: 'A'
     },
     {
-      text: 'of'
+      text: 'resource'
     },
     {
-      text: 'our'
+      text: 'visualization'
     },
     {
-      text: 'app',
+      text: 'tool',
       className: 'text-[#1c1c84] dark:text-[#ffbf00]'
     },
   ]
