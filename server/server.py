@@ -1,26 +1,18 @@
 from flask import Flask, request, jsonify
+import subprocess
 
 app = Flask(__name__)
 
-# REPLACE WITH DB FUNCTIONS
+def run_calculations(location : str):
+    output = subprocess.Popen(["./a.exe", location], stdout=subprocess.PIPE).communicate()[0]
+    output = f"\"{output}\""
+    print(output)
+    return output
 
-def fetch(name : str) -> str:
-    data = {'name': name, 'raw-ingredients': [{'name': 'potato', 'source': 'x farm'}, {'name': 'salt', 'source': 'y factory'}]}
-    return jsonify(data)
-
-def search(query : str) -> list[str]:
-    return ["query", query]
-    
-
-@app.route('/food-item', methods=['GET'])
-def get_food_item():
-    name = request.args.get('name')
-    return fetch(name)
-
-@app.route('/search', methods=['GET'])
+@app.route('/info', methods=['GET'])
 def get_search():
-    query = request.args.get('query')
-    return search(query)
+    location = request.args.get('location')
+    return run_calculations(location)
 
 if __name__ == '__main__':
     app.run(debug=True)
