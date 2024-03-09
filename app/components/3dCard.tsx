@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { CardBody, CardContainer, CardItem } from './ui/3d-card'
-import Chart from './chart'
+import FulfillmentGraph from './FulfillmentGraph'
 
 export function ThreeDCardDemo() {
   return (
@@ -16,7 +16,7 @@ export function ThreeDCardDemo() {
           Some graphs and charts
         </CardItem>
         <CardItem translateZ='100' className='mt-4 w-full'>
-          <Chart />
+          <FulfillmentGraph mssLabels={["Protein", "Carbs", "Fat"]} mssData={[1, 2, 3]} />
         </CardItem>
       </CardBody>
     </CardContainer>
