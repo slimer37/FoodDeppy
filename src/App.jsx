@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 
 import './App.css'
 import FulfillmentGraph from './FulfillmentGraph';
@@ -7,12 +7,34 @@ function App() {
   const mssLabels = ["Protein", "Carbohydrates",  "Fat"]
   const mssData =   [-50,      10,              50]
 
+  const [data, setData] = useState(null);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const request = `http://localhost:5000/info?location=${formData.get('location')}`
+
+    console.log(request)
+
+    fetch(request)
+      .then(response => response.json())
+      .then(json => setData(json))
+      .catch(error => console.error(error));
+  }
+
   return (
     <>
-      <label>
-        Enter Area: <input name="locationInput" />
-      </label>
-      <FulfillmentGraph mssLabels={mssLabels} mssData={mssData} />
+      <form method="get" onSubmit={handleSubmit}>
+        <label>
+          Enter Area: <input name="location" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      {data ? <FulfillmentGraph mssLabels={mssLabels} mssData={mssData} /> : <div>- Enter a location -</div>}
     </>
   )
 }
