@@ -7,7 +7,7 @@ import NavBar from './components/NavBar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Food Deppy',
+  title: 'Agriculture Visualizer',
   description: 'The supply chain visualizer for food products',
 }
 
