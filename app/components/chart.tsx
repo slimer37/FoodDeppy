@@ -1,19 +1,6 @@
 'use client'
 
-import React, { PureComponent } from 'react'
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ReferenceLine,
-  ResponsiveContainer
-} from 'recharts'
-import {Divider} from "@nextui-org/react";
+import { BarChart, Bar, Tooltip, Legend, ReferenceLine, XAxis } from 'recharts'
 
 const data = [
   {
@@ -62,24 +49,25 @@ const data = [
 
 const Chart = () => {
   return (
-      <BarChart
-        width={450}
-        height={300}
-        data={data}
-        stackOffset='sign'
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <Tooltip />
-        <Legend className='mt-5 pt-5 flex'/>
-        <ReferenceLine y={0} stroke='#000' />
-        <Bar dataKey='pv' fill='#8884d8' stackId='stack' />
-        <Bar dataKey='uv' fill='#82ca9d' stackId='stack' />
-      </BarChart>
+    <BarChart
+      width={450}
+      height={300}
+      data={data}
+      stackOffset='sign'
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5
+      }}
+    >
+      <Tooltip />
+      <Legend />
+      <ReferenceLine y={0} stroke='#000' />
+      <Bar dataKey='pv' fill='#8884d8' stackId='stack' />
+      <Bar dataKey='uv' fill='#82ca9d' stackId='stack' />
+      <Bar dataKey='amt' fill='#b30000' stackId='stack' />
+    </BarChart>
   )
 }
 
