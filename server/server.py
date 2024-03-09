@@ -4,10 +4,10 @@ import subprocess
 app = Flask(__name__)
 
 def run_calculations(location : str):
-    output = subprocess.Popen(["./a.exe", location], stdout=subprocess.PIPE).communicate()[0]
-    output = f"\"{output}\""
-    print(output)
-    return output
+    output = subprocess.Popen(["./a.exe", location], stdout=subprocess.PIPE).communicate()[0].decode()
+    
+    # do some process to organize and jsonify output
+    return jsonify([int(a) for a in output.split(',')])
 
 @app.route('/info', methods=['GET'])
 def get_search():

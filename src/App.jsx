@@ -5,7 +5,6 @@ import FulfillmentGraph from './FulfillmentGraph';
 
 function App() {
   const mssLabels = ["Protein", "Carbohydrates",  "Fat"]
-  const mssData =   [-50,      10,              50]
 
   const [data, setData] = useState(null);
 
@@ -34,7 +33,7 @@ function App() {
         </label>
         <button type="submit">Submit</button>
       </form>
-      {data ? <FulfillmentGraph mssLabels={mssLabels} mssData={mssData} /> : <div>- Enter a location -</div>}
+      {data ? <FulfillmentGraph mssLabels={mssLabels} mssData={data} /> : <div>- Enter a location -</div>}
     </>
   )
 }
