@@ -1,54 +1,50 @@
-import * as React from 'react';
+import React, { PureComponent } from 'react';
 
-import { BarChart } from '@mui/x-charts/BarChart';
-
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ReferenceLine,
+  ResponsiveContainer,
+} from 'recharts';
+  
 export default function FulfillmentGraph({ mssLabels, mssData }) {
-    let positiveMss = []
-    let negativeMss = []
+    
+    let data = [];
 
-    mssData.forEach((val, index, _) => {
-        if (val > 0) {
-        positiveMss.push(mssData[index])
-        negativeMss.push(0)
-        } else {
-        negativeMss.push(mssData[index])
-        positiveMss.push(0)
-        }
-    })
+    mssLabels.forEach((value, index, arr) => {
+        data.push({
+            name: value,
+            mss: mssData[index]
+        })
+    });
+
+    console.log(data)
 
     return (
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <BarChart
-            colors={["blue", "red"]}
-            xAxis={[
-            {
-                id: 'barCategories',
-                data: mssLabels,
-                scaleType: 'band'
-            },
-            ]}
-            yAxis={[
-            {
-                label: 'Fulfillment %'
-            }
-            ]}
-            series={[
-            { data: positiveMss, stack: 'a' },
-            { data: negativeMss, stack: 'a' },
-            ]}
-            width={700}
+        <BarChart
+            width={500}
             height={500}
-            />
-        </ThemeProvider>
-    )
+            data={data}
+            margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+            }}
+            >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <ReferenceLine y={0} stroke="#000" />
+            <Bar dataKey="mss" fill="#8884d8" />
+        </BarChart>
+    );
 }
