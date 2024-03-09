@@ -63,7 +63,7 @@ const Chart = () => {
     >
       <Tooltip />
       <Legend />
-      <ReferenceLine y={0} stroke='#000' />
+      <ReferenceLine y={5} stroke='#000' />
       <Bar dataKey='pv' fill='#8884d8' stackId='stack' />
       <Bar dataKey='uv' fill='#82ca9d' stackId='stack' />
       <Bar dataKey='amt' fill='#b30000' stackId='stack' />
