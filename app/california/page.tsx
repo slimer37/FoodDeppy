@@ -1,19 +1,24 @@
 'use client'
 import React from 'react'
-import { Card, CardHeader, CardBody } from '@nextui-org/card'
-import FriesCanvas from '../components/fries'
-import { ThreeDCardDemo } from '../components/3dCard'
-const AnimatedPin = () => {
+import FulfillmentGraph from '../components/FulfillmentGraph'
+
+export default function MSSGraph() {
   return (
-    <section className='py-36'>
-      <div className='container flex flex-row items-center justify-center gap-20'>
-        <h3 className='!m-0 max-w-xs !pb-2 text-5xl font-bold text-[#1c1c84] dark:text-[#ffbf00]'>
-          Data for Merced, CA
+    <div className='space-y-20'>
+      <div className='hero flex space-y-3 flex-col items-center text-[#1c1c84] dark:text-[#ffbf00]
+      text-4xl font-bold'>
+        <h3>
+          Data for
         </h3>
-        <ThreeDCardDemo />
+        <form>
+          <input type="text" className='object-none rounded-md p-2 text-center' placeholder="Place"></input>
+        </form>
       </div>
-    </section>
+      <section>
+        <div className='container flex flex-row items-center justify-center gap-20'>
+        <FulfillmentGraph mssLabels={["Protein", "Carbs", "Fat"]} mssData={[1, 2, 3]} />
+        </div>
+      </section>
+    </div>
   )
 }
-
-export default AnimatedPin
