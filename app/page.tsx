@@ -1,5 +1,5 @@
 
-import { TypewriterEffectDemo } from './components/typeWriter'
+import { Typewriter } from './components/typeWriter'
 import { Link, Button } from '@nextui-org/react'
 import { PinContainer } from './components/ui/3d-pin'
 import { WavyBackground } from "./components/ui/wavy-background";
@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className='text-6xl font-bold text-[#1c1c84] dark:text-[#ffbf00]'>
           AgVis
         </h1>
-        <TypewriterEffectDemo />
+        <Typewriter />
         <Button
           href='/california'
           as={Link}

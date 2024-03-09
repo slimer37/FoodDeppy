@@ -1,20 +1,21 @@
 'use client'
 import { TypewriterEffect } from './ui/typewriter-effect'
 
-export function TypewriterEffectDemo() {
+export function Typewriter() {
   const words = [
     {
       text: 'A'
     },
     {
-      text: 'resource'
-    },
-    {
-      text: 'visualization'
-    },
-    {
-      text: 'tool',
+      text: 'resource',
       className: 'text-[#1c1c84] dark:text-[#ffbf00]'
+    },
+    {
+      text: 'visualization',
+      className: 'text-[#1c1c84] dark:text-[#ffbf00]'
+    },
+    {
+      text: 'tool'
     },
   ]
   return (
