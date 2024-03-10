@@ -1,11 +1,13 @@
-// MSS calculation header file
-#include <stdbool.h>
+#include <math.h>
+#include <string.h>
+#include <ctype.h>
 
-#define LENGTH = 15 // define max length of chars for c
-
-int getTotalAmount();
 bool check(char *fileLocation);
 
 // CSV Reader files & computation
-int totalMSS(char *fileInput);
-int getServingSize();
+int getServingSize(int population, int consumption);
+int columnCounter(char *fineInput);
+
+// Boolean Function
+bool openFile(char *fileInput);
+int sameTerms(char *str1);
