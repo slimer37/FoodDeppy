@@ -122,11 +122,27 @@ double convertToTons(double quantity, char *str1)
     }
 }
 
+int findServingSize(char *str)
+{
+    if (strcasecmp(str, "protein") == 0 || strcasecmp(str, "livestock") == 0 || strcasecmp(str, "poultryproduct") == 0)
+    {
+        return 35; // protein
+    }
+    else if (strcasecmp(str, "vegetables") == 0 || strcasecmp(str, "fruit") == 0 || strcasecmp(str, "nut") == 0)
+    {
+        return 44; // fat
+    }
+    return 0;
+}
+
 int totalMSS(MSS *arr, int totalPopulation)
 {
-    int totalMSS = 0; 
-    if (arr != NULL){
-        ((arr->totalProduction) - (arr->exported)) / (#serving size);
+    int total = 0;
+    if (arr != NULL)
+    {
+        double totalProdc = convertToTons(arr->totalProduction, arr->units);
+        double exportedProdc = convertToTons(arr->exported, arr->units);
+        total = (totalProdc - exportedProdc) / (findServingSize(arr->category));
     }
     return 0;
 }
