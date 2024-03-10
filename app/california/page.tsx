@@ -22,7 +22,7 @@ export default function MSSGraph() {
     // Read the form data
     const form = e.target
 
-    setLocation(new FormData(form).get('location'))
+    setLocation(String(new FormData(form).get('location')))
 
     const request = `http://localhost:5000/is?in=${location}`
 
