@@ -12,7 +12,7 @@ export default function MSSBreakdown() {
     const [data, setData] = useState(null);
     const [error, setError] = useState<string | null>(null);
 
-    let itemNames : Array<string> = []
+    let itemNames: Array<string> = []
 
     function fetchBreakdownData(key: string) {
         setData(null)
@@ -24,7 +24,12 @@ export default function MSSBreakdown() {
         router.push(`?location=${location}&nutrient=${key}`)
 
         fetch(request)
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(`Status code ${response.status}`);
+            })
             .then(json => setData(json))
             .catch(err => {
                 console.error(err)
