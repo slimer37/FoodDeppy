@@ -1,0 +1,21 @@
+ItemName,ShortTonsExported,ProductionTotal,Unit Type,Crop Type,Year Start,Year End
+AlmondsKernel,115000,304915,Ton,Nut,2021,2022
+Pistachios,18425.05,35558,Ton,Nut,2021,2022
+Plums,3560.4,8280,Ton,Fruit,2021,2022
+Walnuts,12906.16,22252,Ton,Nut,2021,2022
+Peaches,22019.87,51209,Ton,Fruit,2021,2022
+Cantaloupes,982042.17,2283819,40lbctn,Vegetable,2021,2022
+SweetPotatoes,12155618.83,28268881,40lbctn,Vegetable,2021,2022
+TomatoesMarket,6149347.01,14300807,24lbctn,Vegetable,2021,2022
+TomatoesProcessing,964365.3,2242710,Ton,Vegetable,2021,2022
+ChickenEggs,60498626.4,140694480,Dozn,PoultryProduct,2021,2022
+CowMilk,6117.29,113810000,cwt,Milk,2021,2022
+GoatMilk,6.95,129269,cwt,Milk,2021,2022
+Cattle,353.75,6581424,cwt,Livestock,2021,2022
+Chickens,38.01,707178726,lb,Livestock,2021,2022
+SheepLamb,2.93,54501,cwt,Livestock,2021,2022
+Turkeys,3.76,69909725,lb,Livestock,2021,2022
+Barley,1679.15,3905,ton,Field,2021,2022
+Corn,12083,28100,ton,Field,2021,2022
+Straw,4979.83,11581,ton,Field,2021,2022
+Wheat,24494.95,56965,ton,Field,2021,2022

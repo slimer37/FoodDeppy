@@ -10,19 +10,15 @@ export default function MSSGraph() {
 
   const [data, setData] = useState(null)
   const [error, setError] = useState<string | null>(null)
+  const [location, setLocation] = useState('')
 
-  const [location, setLocation] = useState<string | null>(null)
-
-  function fetchMSSData(e: any) {
-    e.preventDefault()
+  const fetchMSSData = (event: any) => {
+    event.preventDefault()
 
     setData(null)
     setError(null)
 
-    // Read the form data
-    const form = e.target
-
-    setLocation(String(new FormData(form).get('location')))
+    console.log(`from location: ${location}`)
 
     const request = `http://localhost:5000/is?in=${location}`
 
@@ -43,6 +39,10 @@ export default function MSSGraph() {
       })
   }
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocation(event.target.value)
+  }
+
   function handleClick() {
     router.push(`/breakdown?location=${location}&nutrient=Protein`)
   }
@@ -51,18 +51,29 @@ export default function MSSGraph() {
     <div className='space-y-20'>
       <div className='hero flex flex-col items-center space-y-3 text-4xl font-bold'>
         <h3 className='text-[#1c1c84] dark:text-[#ffbf00]'>Data for</h3>
-        <form method='get' onSubmit={fetchMSSData}>
+        <form onSubmit={fetchMSSData}>
           <input
             type='text'
             className='rounded-md bg-[#1c1c84] object-none p-2 text-center text-white dark:bg-[#262626] dark:text-[#ffbf00]'
             placeholder='Place'
-            name='location'
+            name='inputLocation'
+            onChange={handleInputChange}
           ></input>
         </form>
       </div>
       <section>
         <div className='container flex flex-row items-center justify-center gap-20'>
-          {error ? <p className='text-[#ff0000]'>Error: {error}</p> : (data ? <FulfillmentGraph onclick={handleClick} mssLabels={mssLabels} mssData={data} /> : <></>)}
+          {error ? (
+            <p className='text-[#ff0000]'>Error: {error}</p>
+          ) : data ? (
+            <FulfillmentGraph
+              onclick={handleClick}
+              mssLabels={mssLabels}
+              mssData={data}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </section>
     </div>
