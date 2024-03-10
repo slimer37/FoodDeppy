@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, Response
 import subprocess
+import breakdown
 
 app = Flask(__name__)
 
@@ -9,9 +10,7 @@ def run_calculations(location : str):
     return jsonify(output)
 
 def run_breakdown(nutrient: str):
-    output = subprocess.Popen(["./a.exe", nutrient], stdout=subprocess.PIPE).communicate()[0].decode()
-    
-    return jsonify(output)
+    return jsonify(breakdown.breakdownMacro("data/Merced2021-22.csv", "data/macros.csv", nutrient))
 
 # agvis.biz/is?in=location
 @app.route('/is', methods=['GET'])
@@ -20,6 +19,7 @@ def get_search():
     result = run_calculations(location)
     resp : Response = Flask.make_response(app, result)
     resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp.status_code = 400
     return resp
 
 # agvis.biz/isreally?this=nutrient
@@ -29,7 +29,7 @@ def get_breakdown():
     result = run_breakdown(nutrient)
     resp : Response = Flask.make_response(app, result)
     resp.headers.add('Access-Control-Allow-Origin', '*')
-    return resp    
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=True)

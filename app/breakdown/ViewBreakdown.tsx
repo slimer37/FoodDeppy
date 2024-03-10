@@ -10,35 +10,33 @@ import {
     Legend,
   } from 'recharts';
 
-export default function ViewBreakdown({ labels, dataset } : any) {
+export default function ViewBreakdown({ dataset } : any) {
     
     let data : any = [];
 
-    labels.forEach((value : any, index : any, arr : any) => {
+    Object.keys(dataset).forEach((value : any, index : any, arr : any) => {
         data.push({
             name: value,
-            mss: dataset[index]
+            mss: dataset[value]
         })
     });
-
-    console.log(data)
 
     return (
         <BarChart
             layout='vertical'
-            width={400}
-            height={380}
+            width={1000}
+            height={1200}
             data={data}
             margin={{
                 top: 5,
-                right: 30,
-                left: 20,
+                right: 100,
+                left: 100,
                 bottom: 5,
             }}
             >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis />
-            <YAxis dataKey="name" />
+            <YAxis dataKey="name" type="category" scale="band" />
             <Tooltip />
             <Legend />
             <Bar dataKey="mss" fill="#8884d8" />

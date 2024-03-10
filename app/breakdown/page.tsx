@@ -12,10 +12,7 @@ export default function MSSBreakdown() {
     const [data, setData] = useState(null);
     const [error, setError] = useState<string | null>(null);
 
-    let itemNames: Array<string> = []
-
     function fetchBreakdownData(key: string) {
-        setData(null)
         setError(null)
 
         const request = `http://localhost:5000/isreally?this=${key}`
@@ -47,7 +44,7 @@ export default function MSSBreakdown() {
 
             <section>
                 <div className='container flex flex-row items-center justify-center gap-20'>
-                    {data ? <ViewBreakdown labels={itemNames} dataset={data} /> : (error ? <p className='text-[#ff0000]'>Error: {error}</p> : <></>)}
+                    {data ? <ViewBreakdown dataset={data} /> : (error ? <p className='text-[#ff0000]'>Error: {error}</p> : <></>)}
                 </div>
             </section>
         </div>
