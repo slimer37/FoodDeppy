@@ -1,27 +1,39 @@
 'use client'
 import { useState } from 'react'
 import FulfillmentGraph from '../components/FulfillmentGraph'
+import { useRouter } from 'next/navigation'
 
 export default function MSSGraph() {
   const mssLabels = ["Protein", "Carbohydrates", "Fat"]
 
-  const [data, setData] = useState(null);
+  const router = useRouter()
 
-  function fetchMSSData(e : any) {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
+  function fetchMSSData(e: any) {
     e.preventDefault();
+
+    setData(null)
+    setError(null)
 
     // Read the form data
     const form = e.target;
-    const formData = new FormData(form);
 
-    const request = `http://localhost:5000/info?location=${formData.get('location')}`
+    const location = new FormData(form).get('location')
 
-    console.log(request)
+    const request = `http://localhost:5000/info?location=${location}`
+
+    // Make the url appear to match entry
+    router.push(`?location=${location}`)
 
     fetch(request)
       .then(response => response.json())
       .then(json => setData(json))
-      .catch(error => console.error(error));
+      .catch(err => {
+        console.error(err)
+        setError(`${err.message} (${request})`)
+      })
   }
 
   return (
@@ -36,7 +48,7 @@ export default function MSSGraph() {
       </div>
       <section>
         <div className='container flex flex-row items-center justify-center gap-20'>
-        {data ? <FulfillmentGraph mssLabels={mssLabels} mssData={data}/> : <p><i>Loading...</i></p>}
+          {data ? <FulfillmentGraph mssLabels={mssLabels} mssData={data} /> : (error ? <p className='text-[#ff0000]'>Error: {error}</p> : <></>)}
         </div>
       </section>
     </div>
