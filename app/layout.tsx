@@ -19,17 +19,19 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='font-inter'>
-        <Providers>
-          <header className='py-6'>
-            <nav className='container flex items-center justify-between'>
-              <NavBar />
-            </nav>
-          </header>
-          <main>{children}</main>
-          <footer className='container flex items-center justify-between bottom-0 mb-5'>
-            <Footer />
-          </footer>
-        </Providers>
+        <div className='flex flex-col h-screen justify-between'>
+          <Providers>
+            <header className='py-6'>
+              <nav className='container flex items-center justify-between'>
+                <NavBar />
+              </nav>
+            </header>
+            <main className='mb-auto'>{children}</main>
+            <footer className='container flex items-center justify-between bottom-0 mb-5'>
+              <Footer />
+            </footer>
+          </Providers>
+        </div>
       </body>
     </html>
   )
