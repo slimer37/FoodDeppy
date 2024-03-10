@@ -40,7 +40,7 @@ export default function NavBar() {
       <NavbarBrand>
         <Link
           href='/'
-          className='flex items-center justify-center gap-3 text-[#1c1c84]'
+          className='flex items-center justify-center gap-3 text-[#1c1c84] dark:text-[#ffbf00]'
         >
           <IoMdHome className='text-xl font-bold' />
           <h2 className='text-large font-bold'>Home</h2>
