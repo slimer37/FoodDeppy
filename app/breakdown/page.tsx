@@ -14,21 +14,14 @@ export default function MSSBreakdown() {
 
     let itemNames : Array<string> = []
 
-    function fetchMSSData(e: any) {
-        e.preventDefault();
-
+    function fetchBreakdownData(key: string) {
         setData(null)
         setError(null)
 
-        // Read the form data
-        const form = e.target;
-
-        const location = new FormData(form).get('location')
-
-        const request = `http://localhost:5000/info?location=${location}`
+        const request = `http://localhost:5000/isreally?this=${key}`
 
         // Make the url appear to match entry
-        router.push(`?location=${location}`)
+        router.push(`?location=${location}&nutrient=${key}`)
 
         fetch(request)
             .then(response => response.json())
@@ -44,12 +37,12 @@ export default function MSSBreakdown() {
             <div className='hero flex flex-col items-center text-center'>
                 <h3 className='font-bold text-2xl'>Data for <i>{location}</i></h3>
                 <h3 className='text-[#1c1c84] dark:text-[#ffbf00] py-3'>BREAKDOWN</h3>
-                <NutrientDropdown />
+                <NutrientDropdown value={useSearchParams().get('nutrient')} callback={fetchBreakdownData} />
             </div>
 
             <section>
                 <div className='container flex flex-row items-center justify-center gap-20'>
-                    {/* {data ? <ViewBreakdown labels={itemNames} dataset={data} /> : (error ? <p className='text-[#ff0000]'>Error: {error}</p> : <></>)} */}
+                    {data ? <ViewBreakdown labels={itemNames} dataset={data} /> : (error ? <p className='text-[#ff0000]'>Error: {error}</p> : <></>)}
                 </div>
             </section>
         </div>
