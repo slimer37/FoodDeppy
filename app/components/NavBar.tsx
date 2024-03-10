@@ -68,10 +68,9 @@ export default function NavBar() {
                     Our mission
                   </ModalHeader>
                   <ModalBody>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nullam pulvinar risus non risus hendrerit venenatis.
-                      Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    <p className='text-large'>
+                      To more easily <b>assess</b> and understand the utilization of resources
+                      pertaining to crop production and consumption.
                     </p>
                   </ModalBody>
                   <ModalFooter>
