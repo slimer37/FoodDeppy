@@ -62,13 +62,7 @@ export default function MSSGraph() {
       </div>
       <section>
         <div className='container flex flex-row items-center justify-center gap-20'>
-          {/*           {error ? <p className='text-[#ff0000]'>Error: {error}</p> : (data ? <FulfillmentGraph onclick={handleClick} mssLabels={mssLabels} mssData={data} /> : <></>)}
-           */}
-          <FulfillmentGraph
-            onclick={handleClick}
-            mssLabels={mssLabels}
-            mssData={[1, 2, 3]}
-          />
+          {error ? <p className='text-[#ff0000]'>Error: {error}</p> : (data ? <FulfillmentGraph onclick={handleClick} mssLabels={mssLabels} mssData={data} /> : <></>)}
         </div>
       </section>
     </div>
