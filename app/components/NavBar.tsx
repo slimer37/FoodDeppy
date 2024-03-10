@@ -7,6 +7,9 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
   Link,
   Button
 } from '@nextui-org/react'
@@ -24,6 +27,7 @@ export default function NavBar() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -36,7 +40,11 @@ export default function NavBar() {
   }
 
   return (
-    <Navbar>
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        className='sm:hidden'
+      />
       <NavbarBrand>
         <Link
           href='/'
@@ -69,8 +77,9 @@ export default function NavBar() {
                   </ModalHeader>
                   <ModalBody>
                     <p className='text-large'>
-                      To more easily <b>assess</b> and understand the utilization of resources
-                      pertaining to crop production and consumption.
+                      To more easily <b>assess</b> and understand the
+                      utilization of resources pertaining to crop production and
+                      consumption.
                     </p>
                   </ModalBody>
                   <ModalFooter>
@@ -94,6 +103,27 @@ export default function NavBar() {
           </Button>
         </NavbarItem>
       </NavbarContent>
+      <NavbarMenu>
+        <NavbarMenuItem>
+          <Button
+            variant='light'
+            onPress={onOpen}
+            className='text-md mt-5 font-semibold text-[#1c1c84] dark:text-[#ffbf00]'
+          >
+            Goals
+          </Button>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Button
+            href='/about'
+            as={Link}
+            variant='light'
+            className='text-md font-semibold text-[#1c1c84] dark:text-[#ffbf00]'
+          >
+            How we built it
+          </Button>
+        </NavbarMenuItem>
+      </NavbarMenu>
       <div className='flex gap-4'>
         <Button size='md' variant='light' onClick={toggleTheme}>
           {theme === 'dark' ? <IoMdSunny /> : <IoMdMoon />}
