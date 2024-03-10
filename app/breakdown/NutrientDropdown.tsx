@@ -12,7 +12,7 @@ export default function NutrientDropdown({value, callback} : any) {
                     {value}
                 </Button>
             </DropdownTrigger>
-            <DropdownMenu onAction={(key) => callback(key)}>
+            <DropdownMenu aria-label="Static Actions" onAction={(key) => callback(key)}>
                 <DropdownItem key="Protein">Protein</DropdownItem>
                 <DropdownItem key="Carbohydrates">Carbohydrates</DropdownItem>
                 <DropdownItem key="Fat">Fat</DropdownItem>
