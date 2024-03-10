@@ -35,7 +35,7 @@ export default function MSSBreakdown() {
   }
 
   return (
-    <div className='space-y-20'>
+    <div className='space-y-10'>
       <div className='hero flex flex-col items-center text-center'>
         <h3 className='text-2xl font-bold'>
           Data for <i>{location}</i>
