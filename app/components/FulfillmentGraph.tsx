@@ -45,28 +45,30 @@ export default function FulfillmentGraph({ mssLabels, mssData, onclick }: any) {
     }
   }, [])
   return (
-    <BarChart
-      onClick={onclick}
-      width={windowDimensions.width * 0.8}
-      height={windowDimensions.width * 0.3}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5
-      }}
-    >
-      <CartesianGrid strokeDasharray='3 3' />
-      <XAxis
-        dataKey='name'
-        tick={{ fill: theme === 'dark' ? 'white' : 'black' }}
-      />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <ReferenceLine y={0} stroke='#000' />
-      <Bar dataKey='mss' fill={theme === 'dark' ? '#ffbf00' : '#1c1c84'} />
-    </BarChart>
+    <div>
+        <BarChart
+          onClick={onclick}
+          width={windowDimensions.width * 0.8}
+          height={windowDimensions.width * 0.3}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis
+            dataKey='name'
+            tick={{ fill: theme === 'dark' ? 'white' : 'black' }}
+          />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <ReferenceLine y={0} stroke='#000' />
+          <Bar dataKey='mss' fill={theme === 'dark' ? '#ffbf00' : '#1c1c84'} />
+        </BarChart>
+    </div>
   )
 }
