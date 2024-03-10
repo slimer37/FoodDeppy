@@ -4,23 +4,23 @@ import FulfillmentGraph from '../components/FulfillmentGraph'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function MSSGraph() {
-  const mssLabels = ["Protein", "Carbohydrates", "Fat"]
+  const mssLabels = ['Protein', 'Carbohydrates', 'Fat']
 
   const router = useRouter()
 
-  const [data, setData] = useState(null);
-  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const [location, setLocation] = useState<string | null>(null);
+  const [location, setLocation] = useState<string | null>(null)
 
   function fetchMSSData(e: any) {
-    e.preventDefault();
+    e.preventDefault()
 
     setData(null)
     setError(null)
 
     // Read the form data
-    const form = e.target;
+    const form = e.target
 
     setLocation(new FormData(form).get('location'))
 
@@ -32,9 +32,9 @@ export default function MSSGraph() {
     fetch(request)
       .then(response => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         }
-        throw new Error(`Status code ${response.status}`);
+        throw new Error(`Status code ${response.status}`)
       })
       .then(json => setData(json))
       .catch(err => {
@@ -49,17 +49,26 @@ export default function MSSGraph() {
 
   return (
     <div className='space-y-20'>
-      <div className='hero flex space-y-3 flex-col items-center text-4xl font-bold'>
-        <h3 className='text-[#1c1c84] dark:text-[#ffbf00]'>
-          Data for
-        </h3>
-        <form method="get" onSubmit={fetchMSSData}>
-          <input type="text" className='object-none rounded-md p-2 text-center bg-[#1c1c84] dark:bg-[#262626] text-white dark:text-[#ffbf00]' placeholder="Place" name="location"></input>
+      <div className='hero flex flex-col items-center space-y-3 text-4xl font-bold'>
+        <h3 className='text-[#1c1c84] dark:text-[#ffbf00]'>Data for</h3>
+        <form method='get' onSubmit={fetchMSSData}>
+          <input
+            type='text'
+            className='rounded-md bg-[#1c1c84] object-none p-2 text-center text-white dark:bg-[#262626] dark:text-[#ffbf00]'
+            placeholder='Place'
+            name='location'
+          ></input>
         </form>
       </div>
       <section>
         <div className='container flex flex-row items-center justify-center gap-20'>
-          {error ? <p className='text-[#ff0000]'>Error: {error}</p> : (data ? <FulfillmentGraph onclick={handleClick} mssLabels={mssLabels} mssData={data} /> : <></>)}
+          {/*           {error ? <p className='text-[#ff0000]'>Error: {error}</p> : (data ? <FulfillmentGraph onclick={handleClick} mssLabels={mssLabels} mssData={data} /> : <></>)}
+           */}
+          <FulfillmentGraph
+            onclick={handleClick}
+            mssLabels={mssLabels}
+            mssData={[1, 2, 3]}
+          />
         </div>
       </section>
     </div>

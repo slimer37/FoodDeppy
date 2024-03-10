@@ -29,8 +29,8 @@ export default function FulfillmentGraph({ mssLabels, mssData, onclick } : any) 
     return (
         <BarChart
             onClick={onclick}
-            width={400}
-            height={380}
+            width={50}
+            height={50}
             data={data}
             margin={{
                 top: 5,
