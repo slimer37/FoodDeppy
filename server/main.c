@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <unistd.h>
 #include "mss.h"
 
 #define NUM_CATEGORIES 3
@@ -9,8 +9,7 @@
 #define MAX_FIELDS 10
 #define LENGTH = 15 // define max length of chars for c
 
-const char *ageCategories[NUM_CATEGORIES] = {"child", "teen", "adult"};
-
+// const char *ageCategories[NUM_CATEGORIES] = {"child", "teen", "adult"};
 typedef struct MSS
 {
     // MSS Properties for equation
@@ -24,18 +23,45 @@ typedef struct MSS
 
 MSS *compileData(char *fileInput);
 int totalMSS(MSS *arr, int totalPopulation);
+void printMSS(MSS *obj);
 
 int main(int argc, char **argv)
 {
-    MSS *merced = compileData(argv[1]);
-    FILE *file = fopen(argv[1], "r");
-    // How to get csv file directory given value
-    if (argc > 1 && file != NULL)
-    {
-        double total = totalMSS(merced, 86648);
-        
+    if (argc != 2) {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
     }
-    return 1;
+
+    char *filename = argv[1];
+    if (access(filename, F_OK) == -1) {
+        printf("Error: File '%s' does not exist.\n", filename);
+        return 1;
+    }
+
+    MSS *merced = compileData(filename);
+    if (merced == NULL) {
+        printf("Error: Unable to open or read file '%s'.\n", filename);
+        return 1;
+    }
+
+    printf("Hello World\n");
+    double total = totalMSS(merced, 86648);
+    char buffer[1000];
+    
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error: Unable to open file '%s'.\n", filename);
+        return 1;
+    }
+    
+    // Read and print each line from the CSV file
+    while (fgets(buffer, sizeof(buffer), file) != NULL)
+    {
+        printMSS(merced);
+    }
+    
+    fclose(file);
+    return 0;
 }
 
 // Utility Function
@@ -46,53 +72,54 @@ bool openFile(char *fileInput)
     {
         return true;
     }
+    fclose(file);
     return false;
 }
 
-// CSV creates an array for Micro-Satiary-Data
 MSS *compileData(char *fileInput)
 {
-    char data;
-    char buffer[100];
+    char buffer[1000]; // Increased buffer size
     MSS *arr = malloc(sizeof(MSS) * MAX_FIELDS);
-
-    char *num_fields;
+    
     FILE *file = fopen(fileInput, "r");
-    if (openFile(fileInput))
+    if (file != NULL) // Corrected file opening check
     {
         char *fields[MAX_FIELDS];
-        int num_fields;
+        int num_fields = 0; // Initialized num_fields
         int count = 0;
-        while (fields[num_fields] != NULL && num_fields < MAX_FIELDS - 1)
+        
+        while (fgets(buffer, sizeof(buffer), file) != NULL && count < MAX_FIELDS) // Changed loop condition to use fgets
         {
-            char *token;
-
-            token = strtok(buffer, ",");
-
-            while (fields[num_fields] != NULL && num_fields < MAX_FIELDS - 1)
+            char *token = strtok(buffer, ",");
+            num_fields = 0; // Reset num_fields for each line
+            
+            while (token != NULL && num_fields < MAX_FIELDS) // Changed loop condition and removed redundant check
             {
-                num_fields++;
-                fields[num_fields] = strtok(NULL, ",");
+                fields[num_fields++] = token; // Assign token to fields and then increment num_fields
+                token = strtok(NULL, ",");
             }
 
             // Check if the line has enough fields to process
-            if (num_fields >= 4)
-            { // Assuming there are at least 4 fields: name, totalMacros, servingSize, category
-                MSS *item;
+            if (num_fields >= 5)
+            { // Corrected index to ensure at least 5 fields exist (0-based indexing)
+                MSS *item = malloc(sizeof(MSS)); // Allocate memory for MSS item
                 item->name = fields[0];
                 item->exported = atof(fields[1]);
-                item->totalProduction = atof(fields[2]); // measured in TONS, 40lbctn, 24lbctn, cwt, lb
+                item->totalProduction = atof(fields[2]);
                 item->units = fields[3];
                 item->category = fields[4];
+                
+                arr[count++] = *item; // Assign item to arr[count] and then increment count
             }
-            count++;
-            fclose(file);
         }
+        
+        fclose(file);
         return arr;
     }
     return NULL;
 }
 
+// converting to tons
 double convertToTons(double quantity, char *str1)
 {
     if (strcasecmp(str1, "ton") == 0)
@@ -154,7 +181,10 @@ int totalMSS(MSS *arr, int totalPopulation)
     return total;
 }
 
+// Print Stmts: allergenName, exported items, productionTotal, unit type
 void printMSS(MSS *obj)
 {
-
+    char *string = obj->name;
+    double *indexVal = obj->mssTotal;
+    printf("Item Name: %s, MSS Value: %f\n", string, *indexVal);
 }
