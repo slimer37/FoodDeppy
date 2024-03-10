@@ -4,7 +4,7 @@
 #define LENGTH = 15 // define max length of chars for c
 
 int getTotalAmount();
-bool check(char *word);
+bool check(char *fileLocation);
 
 // CSV Reader files & computation
 int totalMSS(char *fileInput);
