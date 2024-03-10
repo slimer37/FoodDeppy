@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
   
-export default function FulfillmentGraph({ mssLabels, mssData } : any) {
+export default function FulfillmentGraph({ mssLabels, mssData, onclick } : any) {
     
     let data : any = [];
 
@@ -28,6 +28,7 @@ export default function FulfillmentGraph({ mssLabels, mssData } : any) {
 
     return (
         <BarChart
+            onClick={onclick}
             width={400}
             height={380}
             data={data}
