@@ -2,6 +2,23 @@ import pandas as pd
 import json
 
 
+def calculate_nutrition():
+    file_path = 'data/data_sheet_2.csv'
+    df = pd.read_csv(file_path)
+
+    total_protein = df['Protein'].sum()
+    total_fat = df['Fat'].sum()
+    total_carbs = df['Carbs'].sum()
+
+    result = {
+        "Proteins": total_protein,
+        "Fats": total_fat,
+        "Carbs": total_carbs
+    }
+
+    return json.dumps(result)
+
+
 def calculate_excess_produce():
     # Load the CSV files
     df1 = pd.read_csv('data/data_sheet_1.csv')

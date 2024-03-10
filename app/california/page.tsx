@@ -8,15 +8,12 @@ export default function MSSGraph() {
 
   const router = useRouter()
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<number[]>([])
   const [error, setError] = useState<string | null>(null)
   const [location, setLocation] = useState('')
 
   const fetchMSSData = (event: any) => {
     event.preventDefault()
-
-    setData(null)
-    setError(null)
 
     console.log(`from location: ${location}`)
 
@@ -32,7 +29,10 @@ export default function MSSGraph() {
         }
         throw new Error(`Status code ${response.status}`)
       })
-      .then(json => setData(json))
+      .then(json => {
+        const { Proteins, Fats, Carbs } = json
+        setData([Proteins, Fats, Carbs])
+      })
       .catch(err => {
         console.error(err)
         setError(`${err.message} (${request})`)
@@ -65,7 +65,7 @@ export default function MSSGraph() {
         <div className='container flex flex-row items-center justify-center gap-20'>
           {error ? (
             <p className='text-[#ff0000]'>Error: {error}</p>
-          ) : data ? (
+          ) : data.length > 0 ? (
             <FulfillmentGraph
               onclick={handleClick}
               mssLabels={mssLabels}

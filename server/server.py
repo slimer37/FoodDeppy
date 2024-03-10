@@ -1,12 +1,13 @@
 from flask import Flask, make_response, request, jsonify, Response
 import breakdown
-from calculations import calculate_excess_produce
+from calculations import calculate_excess_produce, calculate_nutrition
 
 app = Flask(__name__)
 
 
 def run_calculations(location: str):
-    output = calculate_excess_produce()
+    output = calculate_nutrition()
+    print(output)
     return output
 
 
@@ -21,7 +22,6 @@ def get_search():
     try:
         location = request.args.get('in')
         result = run_calculations(location)
-        print(result)
         resp: Response = make_response(result, 200)
         resp.headers.add('Access-Control-Allow-Origin', '*')
         return resp
