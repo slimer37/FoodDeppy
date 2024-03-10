@@ -13,10 +13,16 @@ def breakdownMacro(production_csv : str, macros_csv : str, key : str) -> dict[in
     proportions = {}
     total = 0
     for index, row in data.iterrows():
+        name = row['ItemName']
         shortTons = row['ShortTonsExported']
         
-        proportions[row['ItemName']] = shortTons
-        total += shortTons
+        mss = shortTons * nutrient_content[name]
+        
+        proportions[name] = mss
+        
+        total += mss
+        
+    print(total)
         
     for key in proportions.keys():
         proportions[key] = proportions[key] * 100 / total
