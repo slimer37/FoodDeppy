@@ -19,9 +19,11 @@ typedef struct MSS
     double totalProduction; // element 3
     char *units;            // element 4
     char *category;         // element 5
+    double *mssTotal;
 } MSS;
 
 MSS *compileData(char *fileInput);
+int totalMSS(MSS *arr, int totalPopulation);
 
 int main(int argc, char **argv)
 {
@@ -30,6 +32,8 @@ int main(int argc, char **argv)
     // How to get csv file directory given value
     if (argc > 1 && file != NULL)
     {
+        double total = totalMSS(merced, 86648);
+        
     }
     return 1;
 }
@@ -135,6 +139,7 @@ int findServingSize(char *str)
     return 0;
 }
 
+// Recieves a MSS struct then divides by total Population and multiplies by percent
 int totalMSS(MSS *arr, int totalPopulation)
 {
     int total = 0;
@@ -142,7 +147,14 @@ int totalMSS(MSS *arr, int totalPopulation)
     {
         double totalProdc = convertToTons(arr->totalProduction, arr->units);
         double exportedProdc = convertToTons(arr->exported, arr->units);
-        total = (totalProdc - exportedProdc) / (findServingSize(arr->category));
+        double servingSize = convertToTons(findServingSize(arr->category), arr->units);
+        total = ((totalProdc - exportedProdc) / servingSize);
+        total = (total / totalPopulation) * 100;
     }
-    return 0;
+    return total;
+}
+
+void printMSS(MSS *obj)
+{
+
 }
