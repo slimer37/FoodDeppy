@@ -25,10 +25,8 @@ export default function Home() {
       </section>
       <div className='flex h-[40rem] w-full items-center justify-center '>
         <PinContainer title='University of California, Merced'>
-          <div className='min-h-500 min-w-500 flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 '>
-            <h3 className='!m-0 max-w-xs !pb-2 text-5xl font-bold text-[#1c1c84] dark:text-[#ffbf00]'>
-              California
-            </h3>
+          <div className='h-autos w-96 flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 '>
+            
             <div className='mt-5 text-base font-normal'>
               <img src='california-counties.svg' />
             </div>
